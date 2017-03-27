@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.spp.keispp.sqllibv2.FragForgotPass">
+
+    <EditText
+        android:id="@+id/txt_forgot_PIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Insert PIN (Max 8 digits)"
+        android:inputType="numberPassword"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btn_forgot_ForgotPassword"
+        style="@style/AlertDialog.AppCompat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_forgot_PIN"
+        android:text="Retrieve"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_forgot_Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Username: "
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lbl_forgot_Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_forgot_Username"
+        android:gravity="center"
+        android:text="Password:"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:visibility="gone" />
+
+</RelativeLayout>

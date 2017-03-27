@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.spp.keispp.sqllibv2.MainRegister">
+
+    <EditText
+        android:id="@+id/txt_register_NewUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="New Username"
+        android:maxLength="20"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/txt_register_NewPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_register_NewUsername"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/txt_register_ConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_register_NewPassword"
+        android:gravity="center"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:maxLength="16"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/txt_register_NewPIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_register_ConfirmPassword"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:hint="New PIN (Max 8 Digits)"
+        android:inputType="numberPassword"
+        android:maxLength="8" />
+
+    <EditText
+        android:id="@+id/txt_register_ConfirmPIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_register_NewPIN"
+        android:gravity="center"
+        android:hint="Confirm PIN"
+        android:inputType="numberPassword"
+        android:maxLength="8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_register_ConfirmPIN"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_register_Cancel"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/btn_register_Register"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Register" />
+
+    </LinearLayout>
+
+</RelativeLayout>

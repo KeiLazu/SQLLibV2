@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context="com.spp.keispp.sqllibv2.FragLogin">
+
+    <EditText
+        android:id="@+id/txt_login_Username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="Username"
+        android:maxLength="15"
+        android:maxLines="1" />
+
+    <EditText
+        android:id="@+id/txt_login_Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_login_Username"
+        android:gravity="center"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btn_login_Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_login_Password"
+        android:layout_marginTop="15dp"
+        android:text="Login" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_login_Login"
+        android:orientation="horizontal"
+        >
+
+        <Button
+            android:id="@+id/btn_login_Register"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Register" />
+
+        <Button
+            android:id="@+id/btn_login_ForgetPass"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Forgot Password" />
+
+    </LinearLayout>
+
+</RelativeLayout>
