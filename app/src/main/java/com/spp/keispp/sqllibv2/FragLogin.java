@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class FragLogin extends Fragment {
@@ -15,8 +16,12 @@ public class FragLogin extends Fragment {
     Button
     btn_Register;
 
+    EditText
+    txt_Username, txt_Password;
+
     protected void init(View view) {
         btn_Register = (Button)view.findViewById(R.id.btn_login_Register);
+
     }
 
     public FragLogin() {

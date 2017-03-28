@@ -66,14 +66,6 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_register_Cancel"
-            style="@style/Base.TextAppearance.AppCompat.Widget.Button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Cancel" />
-
-        <Button
             android:id="@+id/btn_register_Register"
             style="@style/Base.TextAppearance.AppCompat.Widget.Button"
             android:layout_width="0dp"
@@ -81,6 +73,14 @@
             android:layout_weight="1"
             android:text="Register" />
 
+
+        <Button
+            android:id="@+id/btn_register_Cancel"
+            style="@style/Base.TextAppearance.AppCompat.Widget.Button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel" />
     </LinearLayout>
 
 </RelativeLayout>
