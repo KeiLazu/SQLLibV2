@@ -133,6 +133,8 @@ public class MainRegister extends AppCompatActivity {
             startActivity(intent);
             finish();
 
+            dbHelper.close();
+
         }
 
     }

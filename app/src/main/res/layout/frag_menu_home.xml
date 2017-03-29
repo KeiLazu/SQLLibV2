@@ -5,12 +5,54 @@
     tools:context="com.spp.keispp.sqllibv2.FragMenuHome">
 
     <TextView
+        android:id="@+id/lbl_menuHome_Home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="this is only a test for home"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbl_menuHome_ID"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:text="ID: "
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        />
+
+    <TextView
         android:id="@+id/lbl_menuHome_Username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@+id/lbl_menuHome_ID"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:text="Username: "
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/lbl_menuHome_Password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lbl_menuHome_Username"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Password: "
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbl_menuHome_PIN"
+        android:text="PIN: "
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:gravity="center"
+        android:layout_below="@+id/lbl_menuHome_Password"
+        android:layout_marginTop="20dp"
+        />
 
 </RelativeLayout>

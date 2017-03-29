@@ -176,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
             }, 5000);
         }
 
+        dbHelper.close();
+
     }
 
     protected void configButton() {

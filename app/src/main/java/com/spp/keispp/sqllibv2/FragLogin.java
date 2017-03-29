@@ -96,9 +96,22 @@ public class FragLogin extends Fragment {
             Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
             startActivity(intent);
 
+            intent.putExtra("username", txt_Username.getText().toString().trim());
+            intent.putExtra("password", txt_Password.getText().toString().trim());
+            intent.putExtra("ID", eyedi);
+            intent.putExtra("PIN", pin);
+
+            //putting this for testing only
+            String log = "ID: " + eyedi+
+                    "\nUsername: " + username +
+                    "\nPassword: " + pass +
+                    "\nPIN: " + pin;
+            Log.d(TAG, "checkLogin: putting arguments\n" + log);
+
             Toast.makeText(getActivity().getBaseContext(), "Logging: " + txt_Username.getText().toString().trim(), Toast.LENGTH_SHORT).show();
 
             getActivity().finish();
+            dbHelper.close();
         }
     }
 
