@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
+ *
+ * THIS CODE IS IN MAINACTIVITY.CLASS
  */
 public class FragForgotPass extends Fragment {
 

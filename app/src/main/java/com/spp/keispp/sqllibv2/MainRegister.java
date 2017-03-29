@@ -5,10 +5,15 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 public class MainRegister extends AppCompatActivity {
 
@@ -94,16 +99,38 @@ public class MainRegister extends AppCompatActivity {
 
         } else {
 
-            Toast.makeText(this, "Welcome, Registered User: " + txt_NewUsername, Toast.LENGTH_SHORT).show();
+            dbHelper.addUser(new ModelUser(txt_NewUsername.getText().toString().trim(),
+                    txt_newPassword.getText().toString().trim(),
+                    txt_NewPIN.getText().toString().trim()));
 
-            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userData",0);
+            //read all contacts
+            Log.d(TAG, "RegisterUser: reading . . .");
+            List<ModelUser> users = dbHelper.getAllModelUser();
+
+            for (ModelUser mu : users) {
+                String log = "id: " + mu.get_id()+ " ,Name: " +
+                        mu.get_User() + " ,Password: " +
+                        mu.get_Pass() + " ,PIN: " +
+                        mu.get_PIN();
+                Log.d(TAG, "RegisterUser: log \n" + log);
+            }
+
+            Toast.makeText(this, "Welcome, Registered User: " + txt_NewUsername.getText().toString().trim(), Toast.LENGTH_SHORT).show();
+
+            SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("userData", 0);
             SharedPreferences.Editor editorPrefs = sharedPref.edit();
 
             editorPrefs.putString("username", txt_NewUsername.getText().toString().trim()); //store username here
             editorPrefs.putString("password", txt_ConfirmPassword.getText().toString().trim()); //store password here
-            editorPrefs.commit();
+            editorPrefs.apply();
+
+            //show in kucing-log for looking at the prefs
+            Log.d(TAG, "RegisterUser: editorprefs talking \n" +
+                    "Username: " + sharedPref.getString("username", null) + "\n" +
+                    "Password: " + sharedPref.getString("password", null));
 
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra("firstRegister", 1);
             startActivity(intent);
             finish();
 

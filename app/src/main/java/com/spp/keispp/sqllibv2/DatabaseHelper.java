@@ -29,7 +29,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_PIN = "PIN";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME,null,DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -50,9 +50,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     *CODE NAME: OPERATION C.R.U.D.
+     * CODE NAME: OPERATION C.R.U.D.
      **/
 
+    //adding user
     public void addUser(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -66,14 +67,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //get one user
     public ModelUser getModelUser(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(TABLE_USER,
                 new String[]{COL_ID, COL_USER, COL_PASS, COL_PIN}, COL_ID + "=?",
-                new String[]{String.valueOf(id)},null,null,null,null);
+                new String[]{String.valueOf(id)}, null, null, null, null);
 
-        if (cursor != null){
+        if (cursor != null) {
             cursor.moveToFirst();
         }
 
@@ -84,6 +86,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    //get all user
     public List<ModelUser> getAllModelUser() {
         List<ModelUser> modelUserList = new ArrayList<ModelUser>();
 
@@ -92,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if(cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             do {
                 ModelUser modelUser = new ModelUser();
                 modelUser.set_id(Integer.parseInt(cursor.getString(0)));
@@ -103,9 +106,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 modelUserList.add(modelUser);
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return modelUserList;
     }
 
+    //get user count
     public int getUsersCount() {
         String countQuery = "SELECT  * FROM " + TABLE_USER;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -115,6 +120,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return cursor.getCount();
     }
 
+    //update single user and pass
     public int updateUserPass(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -123,19 +129,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_PASS, modelUser.get_Pass());
 
         return db.update(TABLE_USER, values, COL_ID + "=?",
-                new String[] { String.valueOf(modelUser.get_id())});
+                new String[]{String.valueOf(modelUser.get_id())});
     }
 
-    public int updatePIN (ModelUser modelUser) {
+    //update single pin
+    public int updatePIN(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COL_PIN, modelUser.get_User());
 
         return db.update(TABLE_USER, values, COL_ID + "=?",
-                new String[] { String.valueOf(modelUser.get_id())});
+                new String[]{String.valueOf(modelUser.get_id())});
 
     }
+
+    //update single pass
     public int updatePass(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -143,13 +152,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(COL_PASS, modelUser.get_Pass());
 
         return db.update(TABLE_USER, values, COL_ID + "=?",
-                new String[] { String.valueOf(modelUser.get_id())});
+                new String[]{String.valueOf(modelUser.get_id())});
 
     }
 
-
-
-
+    //delete single user
     public void deleteUser(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_USER, COL_ID + "=?",
