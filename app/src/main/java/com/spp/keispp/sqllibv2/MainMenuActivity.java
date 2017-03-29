@@ -3,6 +3,8 @@ package com.spp.keispp.sqllibv2;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -73,7 +75,12 @@ public class MainMenuActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_Home) {
-            // Handle the camera action
+            Fragment fragHome = new Fragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.mainmenu_ContentMain, fragHome)
+                    .commit();
+
         } else if (id == R.id.nav_Person) {
 
         } else if (id == R.id.nav_Income) {
