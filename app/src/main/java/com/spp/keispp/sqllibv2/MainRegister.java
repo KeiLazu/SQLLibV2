@@ -130,7 +130,6 @@ public class MainRegister extends AppCompatActivity {
                     "Password: " + sharedPref.getString("password", null));
 
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("firstRegister", 1);
             startActivity(intent);
             finish();
 

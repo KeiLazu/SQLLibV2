@@ -40,14 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected boolean _checker;
     protected String _pin, _username, _password;
 
-    //limit
-    private int counter;
-
-    //for calendar
-    protected int
-    _secondNow, _minuteNow, _hourNow, _dateNow, _monthNow, _yearNow,
-    _secondUnlock, _minuteUnlock, _hourUnlock, _dateUnlock, _monthUnlock, _yearUnlock;
-
     protected void init() {
         btn_ForgotPass = (Button) findViewById(R.id.btn_login_ForgetPass);
         btn_GetPass = (Button) findViewById(R.id.btn_forgot_ForgotPassword);
@@ -171,8 +163,6 @@ public class MainActivity extends AppCompatActivity {
 
             txt_InputPIN.setFocusable(true);
             txt_InputPIN.setText("");
-
-            counter++;
 
         } else {
             animateFadeOutPIN();

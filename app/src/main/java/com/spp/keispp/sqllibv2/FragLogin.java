@@ -93,7 +93,12 @@ public class FragLogin extends Fragment {
             txt_Username.setFocusable(true);
             txt_Password.setFocusable(true);
         } else {
+            Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
+            startActivity(intent);
+
             Toast.makeText(getActivity().getBaseContext(), "Logging: " + txt_Username.getText().toString().trim(), Toast.LENGTH_SHORT).show();
+
+            getActivity().finish();
         }
     }
 
