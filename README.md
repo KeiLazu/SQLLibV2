@@ -30,4 +30,4 @@ SOFTWARE.
 
 3. not only login, register, and forgot password system, i made some of how i make the "database" like in some tutorial, making a model class and things
 4. you can learn a few or more from here i guess, since this is only my "reminder" if i forget something lol
-5. happy hunting
+5. happy hunting (guess i won't touch this again......leave it as it is)
