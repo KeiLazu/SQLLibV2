@@ -1,6 +1,7 @@
 package com.spp.keispp.sqllibv2;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -34,12 +35,48 @@ public class FragLogin extends Fragment {
     String username, pass, pin;
     protected boolean checker;
 
+    //for sharedPrefs
+    public static final String _userDataPrefs = "userDataPrefs";
+    public static final String _userIDPrefs = "userIDPrefs";
+    public static final String _usernamePrefs = "usernamePrefs";
+    public static final String _passwordPrefs = "passwordPrefs";
+    public static final String _userPINPrefs = "userPINPrefs";
+
+    SharedPreferences sharedPreferences;
+
+    //for checking, if there's no null
+    int _checkUserIDPrefs;
+    String _checkUsernamePrefs,
+            _checkPasswordPrefs, _checkPINPrefs;
+
     protected void init(View view) {
         btn_Register = (Button) view.findViewById(R.id.btn_login_Register);
         btn_Login = (Button) view.findViewById(R.id.btn_login_Login);
 
         txt_Username = (EditText) view.findViewById(R.id.txt_login_Username);
         txt_Password = (EditText) view.findViewById(R.id.txt_login_Password);
+
+        sharedPreferences = getContext().getSharedPreferences(_userDataPrefs, Context.MODE_PRIVATE);
+
+        _checkUserIDPrefs = sharedPreferences.getInt(_userIDPrefs, 0);
+        _checkUsernamePrefs = sharedPreferences.getString(_usernamePrefs, "");
+        _checkPasswordPrefs = sharedPreferences.getString(_passwordPrefs, "");
+        _checkPINPrefs = sharedPreferences.getString(_userPINPrefs, "");
+
+        //checking the remnants of checkuserdata
+        Log.d(TAG, "init: check userDataPrefs: \n" +
+                "ID: " + _checkUserIDPrefs +
+        "\nUsername: " + _checkUsernamePrefs +
+        "\nPassword: " + _checkPasswordPrefs +
+        "\nPIN: " + _checkPINPrefs);
+
+        if (_checkUserIDPrefs != 0 || !_checkUsernamePrefs.matches("")
+                || !_checkPasswordPrefs.matches("") || !_checkPINPrefs.matches("")) {
+            Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
+            startActivity(intent);
+            Toast.makeText(getActivity().getBaseContext(), "Welcome back: " + _checkUsernamePrefs, Toast.LENGTH_SHORT).show();
+
+        }
 
     }
 
@@ -94,15 +131,20 @@ public class FragLogin extends Fragment {
             txt_Password.setFocusable(true);
         } else {
             Intent intent = new Intent(getActivity().getBaseContext(), MainMenuActivity.class);
-            startActivity(intent);
 
-            intent.putExtra("username", txt_Username.getText().toString().trim());
-            intent.putExtra("password", txt_Password.getText().toString().trim());
-            intent.putExtra("ID", eyedi);
-            intent.putExtra("PIN", pin);
+            //put shared intent here
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.clear();
+            editor.putInt(_userIDPrefs, eyedi);
+            editor.putString(_usernamePrefs, username);
+            editor.putString(_passwordPrefs, pass);
+            editor.putString(_userPINPrefs, pin);
+            editor.apply();
 
             //putting this for testing only
-            String log = "ID: " + eyedi+
+            String log = "ID: " + eyedi +
                     "\nUsername: " + username +
                     "\nPassword: " + pass +
                     "\nPIN: " + pin;
@@ -110,8 +152,9 @@ public class FragLogin extends Fragment {
 
             Toast.makeText(getActivity().getBaseContext(), "Logging: " + txt_Username.getText().toString().trim(), Toast.LENGTH_SHORT).show();
 
-            getActivity().finish();
             dbHelper.close();
+            startActivity(intent);
+            getActivity().finish();
         }
     }
 
