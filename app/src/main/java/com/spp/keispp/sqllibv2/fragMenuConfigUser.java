@@ -33,6 +33,9 @@ public class fragMenuConfigUser extends Fragment {
 
     DatabaseHelper dbHelper = new DatabaseHelper(getContext());
 
+    //for updating
+    String _newUsername, _newPassword, _newPIN;
+
     //for sharedprefs
     public static final String _userDataPrefs = "userDataPrefs";
     public static final String _userIDPrefs = "userIDPrefs";
@@ -60,7 +63,75 @@ public class fragMenuConfigUser extends Fragment {
 
     }
 
-    protected void configButton() {
+    protected void configClearText() {
+        btn_ClearText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt_ChangeName.setText("");
+                txt_ChangePIN.setText("");
+                txt_ChangePassword.setText("");
+
+            }
+        });
+    }
+
+    protected void configUpdateButton() {
+        btn_UpdateUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                List<ModelUser> modelUserList = dbHelper.getAllModelUser();
+                for (ModelUser model : modelUserList) {
+                    _userID = model.get_id();
+                    _userUsername = model.get_User();
+                    _userPassword = model.get_Pass();
+                    _userPIN = model.get_PIN();
+                }
+
+                _newUsername = txt_ChangeName.getText().toString().trim();
+                _newPassword = txt_ChangePassword.getText().toString().trim();
+                _newPIN = txt_ChangePIN.getText().toString().trim();
+
+                if (txt_ChangeName.getText().toString().trim().matches("") ||
+                        txt_ChangePassword.getText().toString().trim().matches("") ||
+                        txt_ChangePIN.getText().toString().trim().matches("")) {
+                    Toast.makeText(getActivity().getBaseContext(), "Please fill them all", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.clear();
+                    editor.putInt(_userIDPrefs, 0);
+                    editor.putString(_newUsername, "");
+                    editor.putString(_newPassword, "");
+                    editor.putString(_newPIN, "");
+                    editor.apply();
+
+                    //update user credential here
+                    dbHelper.updateUser(new ModelUser(_userID, _newUsername, _newPassword, _newPIN));
+
+                    for (ModelUser mu : modelUserList) {
+                        String log = "id: " + mu.get_id() + ",\nName: " +
+                                mu.get_User() + ",\nPassword: " +
+                                mu.get_Pass() + ",\nPIN: " +
+                                mu.get_PIN();
+                        Log.d(TAG, "check Update: log \n" + log);
+                    }
+
+                    Toast.makeText(getActivity().getBaseContext(), "Updated!, please Relogin", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(getActivity().getBaseContext(), MainActivity.class);
+                    startActivity(intent);
+                    editor.clear();
+                    editor.apply();
+                    dbHelper.close();
+                    getActivity().finish();
+                }
+            }
+        });
+
+    }
+
+    protected void configDeleteButton() {
         btn_DeleteAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,6 +165,8 @@ public class fragMenuConfigUser extends Fragment {
 
                 Intent intent = new Intent(getActivity().getBaseContext(), MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(getActivity().getBaseContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                dbHelper.close();
                 getActivity().finish();
             }
         });
@@ -104,6 +177,11 @@ public class fragMenuConfigUser extends Fragment {
         // Required empty public constructor
     }
 
+    public void configButton() {
+        configDeleteButton();
+        configUpdateButton();
+        configClearText();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

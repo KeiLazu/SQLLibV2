@@ -122,39 +122,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //update single user and pass
-    public int updateUserPass(ModelUser modelUser) {
+    public int updateUser(ModelUser modelUser) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(COL_USER, modelUser.get_User());
         values.put(COL_PASS, modelUser.get_Pass());
+        values.put(COL_PIN, modelUser.get_PIN());
 
         return db.update(TABLE_USER, values, COL_ID + "=?",
                 new String[]{String.valueOf(modelUser.get_id())});
-    }
-
-    //update single pin
-    public int updatePIN(ModelUser modelUser) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COL_PIN, modelUser.get_User());
-
-        return db.update(TABLE_USER, values, COL_ID + "=?",
-                new String[]{String.valueOf(modelUser.get_id())});
-
-    }
-
-    //update single pass
-    public int updatePass(ModelUser modelUser) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COL_PASS, modelUser.get_Pass());
-
-        return db.update(TABLE_USER, values, COL_ID + "=?",
-                new String[]{String.valueOf(modelUser.get_id())});
-
     }
 
     //delete single user
