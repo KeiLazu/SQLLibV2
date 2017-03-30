@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.spp.keispp.sqllibv2.fragMenuConfigUser"
+    android:padding="10dp"
+    >
+
+    <EditText
+        android:id="@+id/txt_configuser_changeUsername"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:hint="New Username"
+        android:maxLines="20" />
+
+    <EditText
+        android:id="@+id/txt_configuser_changePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_configuser_changeUsername"
+        android:gravity="center"
+        android:hint="New Password"
+        android:inputType="textPassword"
+        android:maxLines="16" />
+
+    <EditText
+        android:id="@+id/txt_configuser_changePIN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_configuser_changePassword"
+        android:gravity="center"
+        android:hint="New PIN"
+        android:inputType="numberPassword"
+        android:maxLines="8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_configuser_changePIN"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/btn_configuser_UpdateUser"
+            android:text="Update"
+            />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Clear"
+            android:id="@+id/btn_configuser_ClearText"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:id="@+id/btn_configuser_DeleteThisUser"
+        android:text="Delete This Account"
+        />
+
+</RelativeLayout>

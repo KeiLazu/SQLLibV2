@@ -1,6 +1,7 @@
 package com.spp.keispp.sqllibv2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,15 @@ import android.widget.TextView;
 
 public class MainMenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    //put for sharedpreference here
+    public static final String _userDataPrefs = "userDataPrefs";
+    public static final String _userIDPrefs = "userIDPrefs";
+    public static final String _usernamePrefs = "usernamePrefs";
+    public static final String _passwordPrefs = "passwordPrefs";
+    public static final String _userPINPrefs = "userPINPrefs";
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,14 +100,24 @@ public class MainMenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_Data) {
 
         } else if (id == R.id.nav_User) {
+            Fragment fragUser = new fragMenuConfigUser();
+            FragmentManager fm = getSupportFragmentManager();
+            fm.beginTransaction()
+                    .replace(R.id.mainmenu_ContentMain, fragUser)
+                    .commit();
 
         } else if (id == R.id.nav_UserList) {
 
         } else if (id == R.id.nav_Logout) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-            finish();
 
+            sharedPreferences = getSharedPreferences(_userDataPrefs,MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit().clear();
+            editor.apply();
+
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
